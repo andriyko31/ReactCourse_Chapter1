@@ -1,19 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const AddToDoComponent = ({ title, onTitleChange, onSubmit }) => {
+function AddToDoComponent({ onAdd }) {
+  const [newTodo, setNewTodo] = useState('');
+
+  const handleAdd = () => {
+    if (newTodo.trim() !== '') {
+      onAdd(newTodo);
+      setNewTodo('');
+    }
+  };
+
   return (
-    <form onSubmit={onSubmit}>
-      <label>
-        <input
-          type="text"
-          value={title}
-          onChange={onTitleChange}
-          placeholder="Enter task title"
-        />
-      </label>
-      <button type="submit">Add</button>
-    </form>
+    <div className="add-todo">
+      <input
+        type="text"
+        placeholder="Add a new todo"
+        value={newTodo}
+        onChange={(e) => setNewTodo(e.target.value)}
+      />
+      <button onClick={handleAdd}>Add Todo</button>
+    </div>
   );
-};
+}
 
 export default AddToDoComponent;

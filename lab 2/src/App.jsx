@@ -1,32 +1,34 @@
-import { useState } from 'react';
-import './App.css';
-import ToDoTable from './components/ToDoTable';
+import React, { useState } from 'react';
 import AddToDoComponent from './components/AddToDoComponent';
+import SearchInput from './components/SearchInput'; 
+import ToDoTable from './components/ToDoTable';
 
-function App() {
-  const [toDos, setToDos] = useState([]);
-  const [newToDo, setNewToDo] = useState({ id: '', title: '' });
+function ToDoApp() {
+  const [todos, setTodos] = useState([]);
+  const [search, setSearch] = useState('');
 
-  function handleNewTitleChange(event) {
-    setNewToDo({ id: new Date().toISOString(), title: event.target.value });
-  }
+  const addTodo = (title) => {
+    const newTodoItem = { id: Date.now(), title };
+    setTodos([...todos, newTodoItem]);
+  };
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    if (newToDo.title.trim() === '') return;
-    setToDos([...toDos, newToDo]);
-    setNewToDo({ id: '', title: '' });
-  }
+  const removeTodo = (id) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  };
+
+  const filteredTodos = todos.filter((todo) =>
+    todo.title.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
-    <>
-      <AddToDoComponent
-        title={newToDo.title}
-        onTitleChange={handleNewTitleChange}
-        onSubmit={handleSubmit}
-      />
-      <ToDoTable toDos={toDos} />
-    </>
+    <div className="todo-app">
+      <h1>ToDo App</h1>
+
+      <AddToDoComponent onAdd={addTodo} />
+      <SearchInput search={search} onSearchChange={setSearch} />
+      <ToDoTable todos={filteredTodos} onRemove={removeTodo} />
+    </div>
   );
 }
-export default App;
+
+export default ToDoApp;

@@ -1,24 +1,21 @@
 import React from 'react';
+import '../style.css';
 
-const ToDoTable = ({ toDos }) => {
+function ToDoTable({ todos, onRemove }) {
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Id</th>
-          <th>Title</th>
-        </tr>
-      </thead>
-      <tbody>
-        {toDos.map((toDo) => (
-          <tr key={toDo.id.toString()}>
-            <td>{toDo.id}</td>
-            <td>{toDo.title}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <ul className="todo-table">
+      {todos.length === 0 ? (
+        <li>No todos available</li>
+      ) : (
+        todos.map((todo) => (
+          <li key={todo.id}>
+            {todo.title}
+            <button onClick={() => onRemove(todo.id)}>Remove</button>
+          </li>
+        ))
+      )}
+    </ul>
   );
-};
+}
 
 export default ToDoTable;
