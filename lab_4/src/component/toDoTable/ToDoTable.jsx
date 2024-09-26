@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 
-const ToDoTable = ({list, DeleteToDo} ) => {
+const ToDoTable = ({ list, DeleteToDo }) => {
   return (
-    <>
-    <table>
+    <div className="todo-table-container">
+      <table className="todo-table">
         <thead>
           <tr>
             <th scope="col">id</th>
@@ -15,25 +15,22 @@ const ToDoTable = ({list, DeleteToDo} ) => {
         </thead>
         <tbody>
           {list.map((item) => (
-              <tr key={item.id}>
-                <td>{item.id}</td>
-                <td>{item.userId}</td>
-                <td>{item.title}</td>
-                <td>{item.completed ? 'Completed' : 'Not Completed'}</td>
-                <td>
-                  <button
-                    type="button"
-                    onClick={() => DeleteToDo(item.id)}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
+            <tr key={item.id}>
+              <td>{item.id}</td>
+              <td>{item.userId}</td>
+              <td>{item.title}</td>
+              <td>{item.completed ? 'Completed' : 'Not Completed'}</td>
+              <td>
+                <button type="button" onClick={() => DeleteToDo(item.id)}>
+                  Delete
+                </button>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
-    </>
-  )
-}
+    </div>
+  );
+};
 
-export default ToDoTable
+export default ToDoTable;
