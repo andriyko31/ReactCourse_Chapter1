@@ -2,28 +2,22 @@ import React from 'react';
 
 const ToDoTable = ({ list, DeleteToDo }) => {
   return (
-    <div className="todo-table-container">
-      <table className="todo-table">
+    <div className="todo-table">
+      <table>
         <thead>
           <tr>
-            <th scope="col">id</th>
-            <th scope="col">userId</th>
-            <th scope="col">Title</th>
-            <th scope="col">Completed</th>
-            <th scope="col">Actions</th>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
-          {list.map((item) => (
-            <tr key={item.id}>
-              <td>{item.id}</td>
-              <td>{item.userId}</td>
-              <td>{item.title}</td>
-              <td>{item.completed ? 'Completed' : 'Not Completed'}</td>
+          {list.map((todo) => (
+            <tr key={todo.id}>
+              <td>{todo.id}</td>
+              <td>{todo.title}</td>
               <td>
-                <button type="button" onClick={() => DeleteToDo(item.id)}>
-                  Delete
-                </button>
+                <button onClick={() => DeleteToDo(todo.id)}>Delete</button>
               </td>
             </tr>
           ))}
