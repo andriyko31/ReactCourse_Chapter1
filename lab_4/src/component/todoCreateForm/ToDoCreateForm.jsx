@@ -5,7 +5,7 @@ const ToDoCreateForm = ({ CreateToDo }) => {
   const [checked, setChecked] = useState(false);
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // Зупиняємо стандартну поведінку
+    e.preventDefault();
     if (title.trim() === "") {
       alert("Title can't be empty");
       return;
