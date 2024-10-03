@@ -5,35 +5,42 @@ import ToDoCreateForm from "../../component/todoCreateForm/ToDoCreateForm";
 import useGetAllToDo from "../../hooks/useGetAllToDo";
 
 const Loader = ({ isLoading, children }) => {
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-  return <>{children}</>;
+  return (
+     <>
+        {isLoading &&  <div>Loading...</div>}
+        {children}
+     </>
+  );
 };
 
 const ToDoContainer = () => {
-  const [searchValue, setSearchValue] = useState("");
-  const { toDoL, isLoading, error, setToDoL } = useGetAllToDo(); // Using useGetAllToDo with loader logic
+  const [searchValue, setSearchValue] = useState(""); // Пошукове значення
+  const { toDoL, isLoading, error, setToDoL } = useGetAllToDo(); // Використання хуку
 
   const handleSearchValueChange = (e) => {
     setSearchValue(e.target.value);
   };
 
   const DeleteToDo = (id) => {
-    setToDoL(toDoL.filter((td) => td.id !== id)); // Remove ToDo
+    setToDoL(toDoL.filter((td) => td.id !== id)); // Видалення завдання
   };
 
   const CreateToDo = (todo) => {
-    setToDoL([todo, ...toDoL]); // Add new ToDo
+    setToDoL([todo, ...toDoL]); // Додавання нового завдання
+  };
+
+  const EditToDo = (id, newTitle) => {
+    setToDoL(
+      toDoL.map((td) => (td.id === id ? { ...td, title: newTitle } : td)) // Редагування завдання
+    );
   };
 
   const listByFilter = toDoL.filter((td) =>
-    td.title.toLowerCase().includes(searchValue.toLowerCase())
+    td.title.toLowerCase().includes(searchValue.toLowerCase()) // Пошук завдань
   );
 
-  // Check for an error
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <div>Error: {error.message}</div>; // Виведення помилки
   }
 
   return (
@@ -41,15 +48,18 @@ const ToDoContainer = () => {
       <div className="todo-container">
         <div className="todo-header">To-Do List</div>
 
-        {/* Use the Loader component for handling loading */}
         <Loader isLoading={isLoading}>
-          <ToDoCreateForm CreateToDo={CreateToDo} />
+          <ToDoCreateForm CreateToDo={CreateToDo} /> {/* Форма створення завдання */}
           <SearchBar
             searchValue={searchValue}
             handleSearchValueChange={handleSearchValueChange}
-          />
+          /> {/* Пошук */}
           {listByFilter.length > 0 ? (
-            <ToDoTable list={listByFilter} DeleteToDo={DeleteToDo} />
+            <ToDoTable
+              list={listByFilter}
+              DeleteToDo={DeleteToDo}
+              EditToDo={EditToDo} // Додаємо логіку для редагування
+            />
           ) : (
             <div>No ToDo items found</div>
           )}
