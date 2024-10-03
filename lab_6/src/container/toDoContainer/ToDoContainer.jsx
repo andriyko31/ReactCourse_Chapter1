@@ -5,12 +5,10 @@ import ToDoCreateForm from "../../component/todoCreateForm/ToDoCreateForm";
 import useGetAllToDo from "../../hooks/useGetAllToDo";
 
 const Loader = ({ isLoading, children }) => {
-  return (
-     <>
-        {isLoading &&  <div>Loading...</div>}
-        {children}
-     </>
-  )
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  return <>{children}</>;
 };
 
 const ToDoContainer = () => {
