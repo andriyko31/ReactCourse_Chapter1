@@ -1,18 +1,23 @@
 import React, { useState } from "react";
 
 const ToDoTable = ({ list, DeleteToDo, EditToDo }) => {
-  const [editingId, setEditingId] = useState(null); // Зберігаємо ID завдання, яке редагуємо
-  const [editTitle, setEditTitle] = useState(""); // Контрольоване поле для заголовку завдання
+  const [editingId, setEditingId] = useState(null);
+  const [editTitle, setEditTitle] = useState("");
+  const [error, setError] = useState(""); // State for validation error
 
   const handleEditClick = (todo) => {
     if (editingId === todo.id) {
-      // Зберегти зміни
-      EditToDo(todo.id, editTitle);
-      setEditingId(null); // При збереженні виходимо з режиму редагування
+      if (editTitle.trim() === "") {
+        setError("Title is required"); // Set error message if input is empty
+      } else {
+        EditToDo(todo.id, editTitle);
+        setEditingId(null);
+        setError(""); // Clear error message on successful save
+      }
     } else {
-      // Увімкнути режим редагування
       setEditingId(todo.id);
-      setEditTitle(todo.title); // Встановити поточний заголовок для редагування
+      setEditTitle(todo.title);
+      setError(""); // Clear any previous error when starting to edit
     }
   };
 
@@ -32,18 +37,22 @@ const ToDoTable = ({ list, DeleteToDo, EditToDo }) => {
               <td>{todo.id}</td>
               <td>
                 {editingId === todo.id ? (
-                  <input
-                    type="text"
-                    value={editTitle}
-                    onChange={(e) => setEditTitle(e.target.value)} // Оновлюємо заголовок у стані
-                  />
+                  <div>
+                    <input
+                      type="text"
+                      value={editTitle}
+                      onChange={(e) => setEditTitle(e.target.value)}
+                      className={error ? "error" : ""} // Add error class if there's an error
+                    />
+                    {error && <div className="error-message">{error}</div>} {/* Show error message */}
+                  </div>
                 ) : (
-                  todo.title // Показуємо звичайний заголовок, якщо не редагуємо
+                  todo.title
                 )}
               </td>
               <td>
                 <button onClick={() => handleEditClick(todo)}>
-                  {editingId === todo.id ? "Save" : "Edit"} {/* Міняємо текст кнопки */}
+                  {editingId === todo.id ? "Save" : "Edit"}
                 </button>
                 <button onClick={() => DeleteToDo(todo.id)}>Delete</button>
               </td>
