@@ -1,0 +1,180 @@
+/* Основні стилі для додатка Address Book */
+.address-book-app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+  transition: background-color 0.3s ease;
+  font-family: "Roboto", sans-serif;
+  padding: 20px;
+}
+
+.address-container {
+  width: 100%;
+  max-width: 800px;
+  background-color: var(--table-bg);
+  border-radius: 15px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+.address-table-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+  width: 100%;
+}
+
+.address-table {
+  width: 80%;
+  border-collapse: collapse;
+  background-color: var(--table-bg);
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.address-table th,
+.address-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.address-table th {
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  text-transform: uppercase;
+}
+
+.address-table tr:hover {
+  background-color: var(--hover-bg);
+}
+
+.address-table td button {
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.address-table td button:hover {
+  background-color: var(--button-hover-bg);
+}
+
+.form-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 20px 0;
+}
+
+input[type="text"],
+input[type="tel"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+button {
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--button-hover-bg);
+}
+
+.error-message {
+  color: red;
+  font-size: 0.9em;
+  margin-bottom: 10px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  margin: 0 5px;
+  padding: 10px 15px;
+  background-color: var(--pagination-bg);
+  color: var(--pagination-text);
+  border-radius: 10px;
+  font-size: 1.2em;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.pagination button:hover {
+  background-color: var(--pagination-hover-bg);
+  transform: scale(1.1);
+}
+
+.pagination button:disabled {
+  background-color: var(--pagination-disabled-bg);
+  cursor: not-allowed;
+}
+
+.pagination button.active {
+  background-color: #ff4c4c;
+  color: white;
+  box-shadow: 0 4px 15px rgba(255, 76, 76, 0.5);
+  transform: scale(1.05);
+}
+
+/* Теми */
+:root {
+  --background-color: #f0f0f0;
+  --table-bg: #ffffff;
+  --border-color: #e0e0e0;
+  --hover-bg: #f9f9f9;
+  --button-bg: #ff6b6b;
+  --button-text: #ffffff;
+  --button-hover-bg: #ff4c4c;
+  --pagination-bg: #ff6b6b;
+  --pagination-text: #fff;
+  --pagination-hover-bg: #ff4c4c;
+  --pagination-disabled-bg: #ccc;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #121212;
+    --table-bg: #1e1e1e;
+    --border-color: #333333;
+    --hover-bg: #333333;
+    --button-bg: #ff4d4d;
+    --button-hover-bg: #ff1f1f;
+    --pagination-bg: #ff4d4d;
+    --pagination-hover-bg: #ff1f1f;
+    --pagination-disabled-bg: #444;
+  }
+}
+.error-text {
+  color: red; /* Червоний колір для тексту помилок */
+}
+
+.error {
+  border: 1px solid red; /* Червона рамка для полів з помилками */
+}
+
