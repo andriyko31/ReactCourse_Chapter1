@@ -8,35 +8,32 @@
   transition: background-color 0.3s ease;
   font-family: "Roboto", sans-serif;
   padding: 20px;
-  color: #fff; /* Білий текст скрізь */
 }
 
 .todo-container {
   width: 100%;
-  max-width: 800px;
+  max-width: 800px; /* Максимальна ширина таблиці */
   background-color: var(--table-bg);
   border-radius: 15px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
   overflow: hidden;
   padding: 20px;
-  margin: 0 auto;
+  margin: 0 auto; /* Центрування */
 }
-
 .todo-table-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px auto;
-  width: 100%;
+  justify-content: center; /* Вирівнювання по горизонталі */
+  align-items: center; /* Вирівнювання по вертикалі */
+  margin: 20px auto; /* Відступи згори і знизу */
+  width: 100%; /* Встановлюємо ширину контейнера на 100% */
 }
 
 .todo-table {
-  width: 80%;
-  border-collapse: collapse;
+  width: 80%; /* Розмір таблиці (можеш налаштувати під свої потреби) */
+  border-collapse: collapse; /* Знімає відступи між ячейками */
   background-color: var(--table-bg);
   border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  color: #fff; /* Білий текст в таблиці */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Тінь для таблиці */
 }
 
 .todo-table th,
@@ -44,22 +41,21 @@
   padding: 12px 15px;
   text-align: left;
   border-bottom: 1px solid var(--border-color);
-  color: #fff; /* Білий текст у клітинках */
 }
 
 .todo-table th {
   background-color: var(--button-bg);
-  color: #fff; /* Білий текст у заголовках */
+  color: var(--button-text);
   text-transform: uppercase;
 }
 
 .todo-table tr:hover {
-  background-color: var(--hover-bg);
+  background-color: var(--hover-bg); /* Зміна кольору при наведенні */
 }
 
 .todo-table td button {
   background-color: var(--button-bg);
-  color: #fff; /* Білий текст на кнопках */
+  color: var(--button-text);
   padding: 6px 12px;
   border: none;
   border-radius: 5px;
@@ -70,7 +66,7 @@
 .todo-table td button:hover {
   background-color: var(--button-hover-bg);
 }
-
+/* Пагінація */
 .pagination {
   display: flex;
   justify-content: center;
@@ -79,11 +75,11 @@
 
 .pagination button {
   margin: 0 5px;
-  padding: 10px 15px;
+  padding: 10px 15px; /* Збільшено розмір кнопок */
   background-color: var(--pagination-bg);
-  color: #fff; /* Білий текст на пагінації */
-  border-radius: 10px;
-  font-size: 1.2em;
+  color: var(--pagination-text);
+  border-radius: 10px; /* Збільшено закруглення */
+  font-size: 1.2em; /* Збільшено розмір шрифту */
   font-weight: bold;
   border: none;
   cursor: pointer;
@@ -93,7 +89,7 @@
 
 .pagination button:hover {
   background-color: var(--pagination-hover-bg);
-  transform: scale(1.1);
+  transform: scale(1.1); /* Трохи збільшуємо при наведенні */
 }
 
 .pagination button:disabled {
@@ -101,10 +97,11 @@
   cursor: not-allowed;
 }
 
+/* Стиль для активної кнопки пагінації */
 .pagination button.active {
-  background-color: #ff4c4c;
+  background-color: #ff4c4c; /* Яскравий колір для активної сторінки */
   color: white;
-  box-shadow: 0 4px 15px rgba(255, 76, 76, 0.5);
+  box-shadow: 0 4px 15px rgba(255, 76, 76, 0.5); /* Підсвічування */
   transform: scale(1.05);
 }
 
@@ -113,10 +110,11 @@
   transform: scale(0.95);
 }
 
+/* Пропуск у пагінації */
 .pagination-dots {
   display: inline-block;
   padding: 10px 15px;
-  color: #fff; /* Білий текст для пропуску в пагінації */
+  color: var(--pagination-text);
   font-size: 1.2em;
   font-weight: bold;
 }
@@ -127,8 +125,8 @@
   --table-bg: #ffffff;
   --item-bg: #ffffff;
   --border-color: #e0e0e0;
-  --text-color: #ffffff; /* Білий текст */
-  --muted-text: #f5f5f5;
+  --text-color: #333333;
+  --muted-text: #888888;
   --hover-bg: #f9f9f9;
   --button-bg: #ff6b6b;
   --button-text: #ffffff;
@@ -138,7 +136,7 @@
   --pagination-text: #fff;
   --pagination-hover-bg: #ff4c4c;
   --pagination-disabled-bg: #ccc;
-  --header-text-color: #ffffff; /* Білий текст для заголовків */
+  --header-text-color: #444;
 }
 
 /* Темна тема */
@@ -149,7 +147,7 @@
     --item-bg: #2c2c2c;
     --border-color: #333333;
     --text-color: #ffffff;
-    --muted-text: #f5f5f5;
+    --muted-text: #aaaaaa;
     --hover-bg: #333333;
     --button-bg: #ff4d4d;
     --button-text: #ffffff;
@@ -159,6 +157,6 @@
     --pagination-text: #ffffff;
     --pagination-hover-bg: #ff1f1f;
     --pagination-disabled-bg: #444;
-    --header-text-color: #ffffff; /* Білий текст для заголовків у темній темі */
+    --header-text-color: #e6e6e6;
   }
 }
